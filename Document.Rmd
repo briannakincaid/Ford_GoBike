@@ -745,39 +745,178 @@ station_15 <- filter(real_time_data, station_id == 15)
 station_30 <- filter(real_time_data, station_id == 30)
 station_6 <- filter(real_time_data, station_id == 6)
 
+station_15_pf <- as.data.frame(select(station_15, percent_filled))
+station_30_pf <- as.data.frame(select(station_30, percent_filled))
+station_6_pf <- as.data.frame(select(station_6, percent_filled))
+
+station_15_nd <- as.data.frame(select(station_15, num_docks_available))
+station_30_nd <- as.data.frame(select(station_30, num_docks_available))
+station_6_nd <- as.data.frame(select(station_6, num_docks_available))
+
+station_15_nb <- as.data.frame(select(station_15, num_bikes_available))
+station_30_nb <- as.data.frame(select(station_30, num_bikes_available))
+station_6_nb <- as.data.frame(select(station_6, num_bikes_available))
+
 top_stations_rt <- rbind(station_6,station_15,station_30)
+top_stations_rt$station_id <- as.character(top_stations_rt$station_id)
 ```
 
-The data I retrieved was from April 30, from 4pm to 7pm. 
+The data I retrieved was from April 30, from 4pm to 7pm.
 
 ```{r, echo=FALSE, fig.height=3}
 ggplot() + 
-  geom_smooth(station_6, mapping = aes(x = time, y = percent_filled),method='loess') +
+  geom_smooth(top_stations_rt, mapping = aes(x = time, y = percent_filled, color=station_id),method='loess', se=FALSE) +
   xlab("Time") +
   ylab("Percent Filled") +
-  ggtitle("Percent Filled vs. Time for Station 6 on April 30")
+  ggtitle("Percent Filled vs. Time for April 30")
 ```
 
-```{r, echo=FALSE,fig.height=3}
+```{r,include=FALSE}
+t.test(station_15_pf)
+t.test(station_6_pf)
+t.test(station_30_pf)
+```
+
+**One Sample t-test**  
+
+*data*:  Percent Filled for Station 15  
+
+t = 5.0964  
+df = 10  
+p-value = 0.0004665  
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 0.04173866 0.10658670   
+*mean of x:* 0.07416268  
+   
+   
+**One Sample t-test**  
+
+*data*:  Percent Filled for Station 6   
+
+t = 54.572  
+df = 10  
+p-value = 1.034e-13  
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 0.8378527 0.9091829   
+*mean of x:* 0.8735178 
+
+
+**One Sample t-test**  
+
+*data*:  Percent Filled for Station 30     
+
+t = 5.4294    
+df = 10  
+p-value = 0.0002891  
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 0.08745515 0.20919556   
+*mean of x:* 0.1483254  
+
+
+```{r, echo=FALSE, fig.height=3}
 ggplot() + 
-  geom_smooth(station_15, mapping = aes(x = time, y = percent_filled),method='loess') +
+  geom_smooth(top_stations_rt, mapping = aes(x = time, y = num_bikes_available, color=station_id),method='loess', se=FALSE) +
   xlab("Time") +
-  ylab("Percent Filled") +
-  ggtitle("Percent Filled vs. Time for Station 15 on April 30")
+  ylab("Number of Bikes Available") +
+  ggtitle("Number of Bikes Available vs. Time for April 30")
 ```
 
-```{r, echo=FALSE,fig.height=3}
+```{r,include=FALSE}
+t.test(station_15_nb)
+t.test(station_6_nb)
+t.test(station_30_nb)
+```
+
+**One Sample t-test**  
+
+*data*:  Number of Bikes for Station 15  
+
+t = 5.0964  
+df = 10  
+p-value = 0.0004665  
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 1.586069 4.050295      
+*mean of x:* 2.818182     
+   
+   
+**One Sample t-test**  
+
+*data*:  Number of Bikes for Station 6   
+
+t = 54.572  
+df = 10  
+p-value = 1.034e-13  
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 19.27061 20.91121      
+*mean of x:* 20.09091    
+
+
+**One Sample t-test**  
+
+*data*:  Number of Bikes for Station 30     
+
+t = 5.4294    
+df = 10  
+p-value = 0.0002891  
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 1.661648 3.974716   
+*mean of x:* 2.818182    
+
+
+```{r, echo=FALSE, fig.height=3}
 ggplot() + 
-  geom_smooth(station_30, mapping = aes(x = time, y = percent_filled),method='loess') +
+  geom_smooth(top_stations_rt, mapping = aes(x = time, y = num_docks_available, color=station_id),method='loess', se=FALSE) +
   xlab("Time") +
-  ylab("Percent Filled") +
-  ggtitle("Percent Filled vs. Time for Station 30 on April 30")
+  ylab("Number of Docks Available") +
+  ggtitle("Number of Docks Available vs. Time for April 30")
 ```
 
+```{r,include=FALSE}
+t.test(station_15_nd)
+t.test(station_6_nd)
+t.test(station_30_nd)
+```
+
+**One Sample t-test**  
+
+*data*:  Number of Docks for Station 15  
+
+t = 58.197    
+df = 10  
+p-value = 5.448e-14     
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 30.94971 33.41393      
+*mean of x:* 32.18182     
+   
+   
+**One Sample t-test**  
+
+*data*:  Number of Docks for Station 6   
+
+t = 3.1305     
+df = 10  
+p-value = 0.01068    
+
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 0.183430 1.089297      
+*mean of x:* 0.6363636   
 
 
+**One Sample t-test**  
 
+*data*:  Number of Docks for Station 30     
 
+t = 35.777       
+df = 10  
+p-value = 6.911e-12    
 
-
-
+*alternative hypothesis:* true mean is not equal to 0  
+*95 percent confidence interval:* 15.00355 16.99645     
+*mean of x:* 16     
