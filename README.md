@@ -1,5 +1,6 @@
-# Ford GoBike
-MA415 Final Project
+# MA415 Final Project: Ford GoBike
+
+Please see Document.pdf for complete project description and report on the analysis. 
 
 ## IMPORTANT NOTES
 
