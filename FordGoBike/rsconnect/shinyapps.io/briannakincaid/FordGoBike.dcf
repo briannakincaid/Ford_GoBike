@@ -1,0 +1,12 @@
+name: FordGoBike
+title: FordGoBike
+username:
+account: briannakincaid
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 334150
+bundleId: 1350542
+url: https://briannakincaid.shinyapps.io/FordGoBike/
+when: 1525223507.35016
+asMultiple: FALSE
+asStatic: FALSE
