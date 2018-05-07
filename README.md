@@ -13,6 +13,9 @@ Please select the first file ("2017-fordgobike-tripdata.csv"), download, and ren
 ## Description of Files
 
 Project Description: Document.Rmd & Document.pdf
+
+Shiny App: https://briannakincaid.shinyapps.io/FordGoBike/
+
 Project File: Ford_GoBike.Rproj
 
 Historical Data:
